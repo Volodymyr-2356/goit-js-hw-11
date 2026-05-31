@@ -9,14 +9,10 @@ import "izitoast/dist/css/iziToast.min.css";
 
 
 import { getImagesByQuery } from "./js/pixabay-api";
-import { createGallery } from "./js/render-functions";
-import { clearGallery } from "./js/render-functions";
-import { showLoader } from "./js/render-functions";
-import { hideLoader } from "./js/render-functions";
+import { createGallery,clearGallery, showLoader,hideLoader } from "./js/render-functions";
 
 const form = document.querySelector(".form");
-const gallery = document.querySelector(".gallery");
-const loader = document.querySelector(".loader");
+
 
 
 form.addEventListener("submit", (e) => {
@@ -29,25 +25,38 @@ form.addEventListener("submit", (e) => {
             title: 'Warninig',
             titleColor: 'red',
             position:'topRight',
-            message: 'Sorry, there are no images matching your search query. Please try again!'
+            message: 'Please enter a search query'
         });
         return;
     }
   clearGallery(); 
-    hideLoader();
+   showLoader()
 
 
     
 
   getImagesByQuery(query)
     .then(data => {
+      if (data.hits.length === 0) {
+        iziToast.error({
+          title: "No result",
+          message: "Sorry, no images found. Try another search.",
+          position: "topRight",
+        });
+        return;
+      }
       createGallery(data.hits)
     })
     .catch(err => {
       console.error(err);
+      iziToast.error({
+        title: "Error",
+        message: "Something went wrong. Try again later.",
+        position:"topRight",
+      })
     })
       .finally(() => {
-            showLoader();
+            hideLoader();
     })
 
 });
