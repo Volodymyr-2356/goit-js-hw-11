@@ -13,7 +13,7 @@ const instance = axios.create({
     
 });
 
-export const getImage = (query) => {
+export const getImagesByQuery = (query) => {
     return instance.get('', { params: { q: query,}}).then(res =>  res.data)
     
 

@@ -8,8 +8,11 @@ import "izitoast/dist/css/iziToast.min.css";
 
 
 
-import { getImage } from "./js/pixabay-api";
-import { renderImages } from "./js/render-functions";
+import { getImagesByQuery } from "./js/pixabay-api";
+import { createGallery } from "./js/render-functions";
+import { clearGallery } from "./js/render-functions";
+import { showLoader } from "./js/render-functions";
+import { hideLoader } from "./js/render-functions";
 
 const form = document.querySelector(".form");
 const gallery = document.querySelector(".gallery");
@@ -30,20 +33,21 @@ form.addEventListener("submit", (e) => {
         });
         return;
     }
-    gallery.innerHTML = "";  
-    loader.classList.remove("hidden");
+  clearGallery(); 
+    hideLoader();
+
+
     
 
-  getImage(query)
+  getImagesByQuery(query)
     .then(data => {
-      renderImages(data.hits)
+      createGallery(data.hits)
     })
     .catch(err => {
       console.error(err);
     })
       .finally(() => {
-          loader.classList.add("hidden");
-        
+            showLoader();
     })
 
 });

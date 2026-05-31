@@ -49,7 +49,7 @@
 .info {
   display: flex;
   gap: 20px;
-  flex-direction: column;
+  /* flex-direction: column; */
 }
 .value {
   display: flex;
