@@ -22,14 +22,15 @@ form.addEventListener("submit", (e) => {
     const query = input.value.trim();
     if (!query) {
         iziToast.show({
-            title: 'Warninig',
+            title: 'Warning',
             titleColor: 'red',
             position:'topRight',
             message: 'Please enter a search query'
         });
         return;
     }
-  clearGallery(); 
+  clearGallery();
+  
    showLoader()
 
 
@@ -46,6 +47,7 @@ form.addEventListener("submit", (e) => {
         return;
       }
       createGallery(data.hits)
+      input.value = "";
     })
     .catch(err => {
       console.error(err);

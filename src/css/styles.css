@@ -37,6 +37,7 @@
   display: flex;
   justify-content: center;
   margin-bottom: 32px;
+  gap: 8px;
 }
 
 .gallery {
@@ -54,4 +55,24 @@
 .value {
   display: flex;
   gap: 20px;
+}
+
+.form-input {
+  height: 40px;
+  padding: 8px, 16px;
+}
+
+.form-button {
+  border-radius: 8px;
+  padding: 8px 16px;
+  width: 91px;
+  height: 40px;
+  background-color: #4e75ff;
+  border-style: none;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
 }
